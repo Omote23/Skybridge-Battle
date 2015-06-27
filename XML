@@ -5,6 +5,18 @@
 <authors>
     <author uuid="5d1191a6-9114-493e-9867-d31cdd86a603"/>
 </authors>
+<rules>
+    <rule>Team spleefing is allowed but don't do that excessively and blatantly!</rule>
+    <rule>Spawn Killing and Spawn Camping are allowed</rule>
+    <rule>Evidence required for punishments</rule>
+</rules>
+<broadcasts>
+    <tip after="5s">Go to the upstairs and get supply for build epic skybridge!!</tip>
+    <tip after="17s">Team spleefing is allowed but don't do that excessively and blatantly!</tip>
+    <tip after="22s">Almost All materials is very easy to break, So you need to build skybridge securely</tip>
+    <tip after="40s">Obsidian, Glass, and Glowstone is very limited, however it takes long time to break compared to other blocks.</tip>
+    <tip after="1m" every="30m" count="3">Evidence required for punishment.</tip>
+</broadcasts>
 <objective>
     Capture the enemy flag 4 times! and Destroy 2 of enemy's Emerald Pillar!
 </objective>
