@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<map proto="1.4.0">
+<name>Skybridge Battle</name>
+<version>1.0.0</version>
+<authors>
+    <author uuid="5d1191a6-9114-493e-9867-d31cdd86a603"/>
+</authors>
+<objective>
+    Capture the enemy flag 4 times! and Destroy 2 of enemy's Emerald Pillar!
+</objective>
+<teams>
+   <team id="red" color="dark red" max="37" max-overfill="40">Red Team</team>
+   <team id="blue" color="blue" max="37" max-overfill="40">Blue Team</team>
+</teams>
+<spawns>
+    <spawn team="red" kit="redkit">
+        <point yaw="1">
+            <cylinder base="-5.5,111,1694.5" height="0" radius="2"/>
+        </point>
+        <point yaw="105">
+            <cylinder base="5.5,111,1711.5" height="0" radius="2"/>
+        </point>
+        <point yaw="-130">
+            <cylinder base="-16.5,111,1711.5" height="0" radius="2"/>
+        </point>
+    </spawn>
+    <spawn team="blue" kit="bluekit">
+        <point yaw="-180">
+            <cylinder base="-185.5,111,1532.5" height="0" radius="2"/> 
+        </point>
+        <point yaw="-63">
+            <cylinder base="-196.5,111,1515.5" height="0" radius="2"/> 
+        </point>
+        <point yaw="-63">
+            <cylinder base="-174.5,111,1515.5" height="0" radius="2"/> 
+        </point>
+    </spawn>
+    <default yaw="-90"><cuboid min="-97,251,1619" max="-93,251,1607"/></default>
+</spawns>
+<score>
+    <limit>4</limit>
+</score>
+<flags>
+    <flag id="URF" name="Upper Red Flag" owner="red" color="red">
+        <carry-message>
+            You have the flag! Return it to your Spawn!!
+        </carry-message>
+        <post pickup-filter="only-blue" recover-time="40s">-5.5,232,1705.5</post>
+    </flag>
+    <flag id="LRF" name="Lower Red Flag" owner="red" color="red">
+        <carry-message>
+            You have the flag! Return it to your Spawn!
+        </carry-message>
+        <post pickup-filter="only-blue" recover-time="20s">-5.5,12,1705.5</post>
+    </flag>
+    <net points="1" region="blue-net" flags="URF LRF" respawn-together="true"/>
+    <flag id="UBF" name="Upper Blue Flag" owner="blue" color="blue">
+        <carry-message>
+            You have the flag! Return it to your Spawn!
+        </carry-message>
+        <post pickup-filter="only-red" recover-time="40s">-185.5,232,1521.5</post>
+    </flag>
+    <flag id="LBF" name="Lower Blue Flag" owner="blue" color="blue">
+        <carry-message>
+   		   You have the flag! Return it to your Spawn!
+        </carry-message>
+        <post pickup-filter="only-red" recover-time="20s">-185.5,12,1521.5</post>
+    </flag>
+    <net points="1" region="red-net" flags="UBF LBF" respawn-together="true"/>
+</flags>
+<filters>
+    <filter name="only-red">
+        <team>red</team>
+    </filter>
+    <filter name="only-blue">
+        <team>blue</team>
+    </filter>    
+    <filter name="only-gold">
+        <any>
+            <block>gold_block</block>
+            <block>stained_glass</block>
+        </any>
+    </filter>
+</filters>
+<regions>
+    <rectangle name="field" min="-220,1480" max="20,1760"/>
+    <apply enter="never" message="You may not leave the battlefield! the battlefield radius is -220,1480 to 20 1760!">
+        <region name="field"/>
+            <negative>
+                <region name="field"/>
+            </negative>
+    </apply>
+    <union name="all-flag-area">
+        <cylinder name="Upper-red" base="-5.5,232,1705.5" radius="3" height="5"/>
+        <cylinder name="Lower-red" base="-5.5,12,1705.5" radius="3" height="5"/>
+        <cylinder name="Upper-blue" base="-185.5,232,1521.5" radius="3" height="5"/>
+        <cylinder name="Lower-blue" base="-185.5,12,1521.5" radius="3" height="5"/>
+    </union>
+    <union name="spawn-areas">
+        <cylinder base="-5.5,111,1694.5" radius="11.5" height="19"/>
+        <cylinder base="5.5,111,1711.5" radius="11.5" height="19"/>
+        <cylinder base="-16.5,111,1711.5" radius="11.5" height="19"/>
+        <cylinder base="-185.5,111,1532.5" radius="11.5" height="19"/>
+        <cylinder base="-196.5,111,1515.5" radius="11.5" height="19"/>
+        <cylinder base="-174.5,111,1515.5" radius="11.5" height="19"/>
+    </union>
+    <apply block="never" message="Don't modify the area around the flag post.">
+        <region name="all-flag-area"/>
+    </apply>
+    <cylinder name="blue-net" base="-185.5,111,1521.5" radius="2" height="0"/>
+    <cylinder name="red-net" base="-5.5,111,1705.5" radius="2" height="0"/>
+    <apply block-break="only-gold" block-place="only-gold" message="You may not modify the spawn floor except gold block and stained clay!">
+        <region name="spawn-areas"/>
+    </apply>
+</regions>
+<destroyables name="Upper Pillar" materials="emerald_block" completion="75%">
+    <destroyable owner="blue">
+       <region><cuboid min="-184,132,1520" max="-186,170,1522"/></region>
+    </destroyable>
+    <destroyable owner="red">
+       <region><cuboid min="-6,132,1704" max="-4,170,1706"/></region>
+    </destroyable>
+</destroyables>
+<destroyables name="Lower Pillar" materials="emerald_block" completion="75%">
+    <destroyable owner="blue">
+       <region><cuboid min="-184,71,1520" max="-186,109,1522"/></region>
+    </destroyable>
+    <destroyable owner="red">
+       <region><cuboid min="-6,71,1704" max="-4,109,1706"/></region>
+    </destroyable>
+</destroyables>
+<kits>
+    <kit name="spawn">
+        <item slot="0" unbreakable="true">stone sword</item>
+        <item slot="1" unbreakable="true" enchantment="arrow_knockback:1 arrow_infinite:1">bow</item>
+        <item slot="2" unbreakable="true" enchantment="dig speed:6">diamond pickaxe</item>
+        <item slot="3" unbreakable="true" enchantment="dig speed:4">iron axe</item>
+        <item slot="4" unbreakable="true" enchantment="dig speed:10">diamond shovel</item>
+        <item slot="5" unbreakable="true">FLINT_AND_STEEL</item>
+        <item slot="6" unbreakable="true">shears</item>
+        <item slot="7" amount="25">golden_carrot</item>
+        <item slot="8" amount="64">dirt</item>
+        <item slot="9" amount="4">wood</item>
+        <item slot="10" amount="16">vine</item>
+        <item slot="28" amount="1">arrow</item>
+        <potion duration="15s" amplifier="127">damage resistance</potion>
+        <potion duration="15s" amplifier="3">increase damage</potion>
+    </kit>
+    <kit name="redkit" parents="spawn">
+        <helmet color="993333" unbreakable="true">leather helmet</helmet>
+        <chestplate color="993333" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="993333" unbreakable="true">leather leggings</leggings>
+        <boots color="993333" unbreakable="true">leather boots</boots>
+    </kit>
+    <kit name="bluekit" parents="spawn">
+    	<helmet color="334CB2" unbreakable="true">leather helmet</helmet>
+        <chestplate color="334CB2" unbreakable="true">leather chestplate</chestplate>
+        <leggings color="334CB2" unbreakable="true">leather leggings</leggings>
+        <boots color="334CB2" unbreakable="true">leather boots</boots>
+    </kit>
+</kits>
+</map>
