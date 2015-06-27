@@ -6,16 +6,13 @@
     <author uuid="5d1191a6-9114-493e-9867-d31cdd86a603"/>
 </authors>
 <rules>
-    <rule>Team spleefing is allowed but don't do that excessively and blatantly!</rule>
     <rule>Spawn Killing and Spawn Camping are allowed</rule>
-    <rule>Evidence required for punishments. except when punish fly hackers</rule>
 </rules>
 <broadcasts>
     <tip after="5s">Go to the upstairs and get supply for build epic skybridge!!</tip>
-    <tip after="17s">Team spleefing is allowed but don't do that excessively and blatantly!</tip>
+    <tip after="17s">This map allows Spawn killing and camping however Don't worry. It's almost impossible :D</tip>
     <tip after="22s">Almost All materials is very easy to break, So you need to build skybridge very securely</tip>
     <tip after="40s">Obsidian, Glass, and Glowstone is very limited, however it takes long time to break compared to other blocks!</tip>
-    <alert after="1m" every="30m" count="3">Evidence required for punishment. except when punish fly hackers</alert>
     <tip after="55s">This map is made for practice bridging, bowing, and counter-bridging. Feel Free to build skybridge!!!</tip>
 </broadcasts>
 <objective>
